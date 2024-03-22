@@ -6,13 +6,13 @@ public:
     Ball(float winWidth, float winHeight);
     void tick(float deltaTime);
     Rectangle getCollisionRec();
-    float xSpeed = 200.f;
-    float ySpeed = 200.f;
+    void reverseX();
+    float x = 0;
+    float y = 0;
 
 private:
-    float winWidth = 0;
     float winHeight = 0;
     float radius = 5.f;
-    float x = winWidth / 2.f;
-    float y = winHeight / 2.f;
+    float xSpeed = 200.f;
+    float ySpeed = 200.f;
 };

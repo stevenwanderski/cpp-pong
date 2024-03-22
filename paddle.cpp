@@ -1,10 +1,9 @@
 #include <raylib.h>
 #include "paddle.h"
 
-Paddle::Paddle(float x, float y, float winWidth, float winHeight, KeyboardKey upKey, KeyboardKey downKey):
+Paddle::Paddle(float x, float y, float winHeight, KeyboardKey upKey, KeyboardKey downKey):
     x(x),
     y(y),
-    winWidth(winWidth),
     winHeight(winHeight),
     upKey(upKey),
     downKey(downKey)

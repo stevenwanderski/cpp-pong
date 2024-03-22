@@ -1,10 +1,10 @@
 #include <raylib.h>
 #include "ball.h"
 
-Ball::Ball(float winWidth, float winHeight):
-    winWidth(winWidth),
-    winHeight(winHeight)
+Ball::Ball(float winWidth, float winHeight) : winHeight(winHeight)
 {
+    x = winWidth / 2.f;
+    y = winHeight / 2.f;
 }
 
 void Ball::tick(float deltaTime)
@@ -26,4 +26,9 @@ Rectangle Ball::getCollisionRec()
       radius * 2,
       radius * 2
     };
+}
+
+void Ball::reverseX()
+{
+    xSpeed = -xSpeed;
 }

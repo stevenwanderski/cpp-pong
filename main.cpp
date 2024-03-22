@@ -9,6 +9,8 @@ int main(void)
   InitWindow(width, height, "Pong!");
   SetTargetFPS(60);
 
+  bool isRunning = true;
+
   Ball ball{
     width,
     height
@@ -17,7 +19,6 @@ int main(void)
   Paddle paddle1{
     30.f,
     height / 2.f - 50.f,
-    width,
     height,
     KEY_Q,
     KEY_A
@@ -26,7 +27,6 @@ int main(void)
   Paddle paddle2{
     width - 30.f,
     height / 2.f - 50.f,
-    width,
     height,
     KEY_P,
     KEY_L
@@ -37,18 +37,33 @@ int main(void)
     ClearBackground(BLACK);
     float dT = GetFrameTime();
 
-    ball.tick(dT);
-    paddle1.tick(dT);
-    paddle2.tick(dT);
+    if (isRunning)
+    {
+      ball.tick(dT);
+      paddle1.tick(dT);
+      paddle2.tick(dT);
+    }
 
     if (CheckCollisionRecs(ball.getCollisionRec(), paddle2.getCollisionRec()))
     {
-      ball.xSpeed = -ball.xSpeed;
+      ball.reverseX();
     }
 
     if (CheckCollisionRecs(ball.getCollisionRec(), paddle1.getCollisionRec()))
     {
-      ball.xSpeed = -ball.xSpeed;
+      ball.reverseX();
+    }
+
+    if (ball.x < 0.f)
+    {
+      isRunning = false;
+      DrawText("Player 2 Wins!", 250, 50, 40, WHITE);
+    }
+
+    if (ball.x > width)
+    {
+      isRunning = false;
+      DrawText("Player 1 Wins!", 250, 50, 40, WHITE);
     }
 
     EndDrawing();
