@@ -34,3 +34,13 @@ Rectangle Paddle::getCollisionRec()
       height
     };
 }
+
+int Paddle::getScore()
+{
+    return score;
+}
+
+void Paddle::increaseScore()
+{
+    score += 1;
+}

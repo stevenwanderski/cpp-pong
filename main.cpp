@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "ball.h"
 #include "paddle.h"
+#include <string>
 
 int main(void)
 {
@@ -37,6 +38,9 @@ int main(void)
     ClearBackground(BLACK);
     float dT = GetFrameTime();
 
+    DrawText(std::to_string(paddle1.getScore()).c_str(), 100, 50, 20, WHITE);
+    DrawText(std::to_string(paddle2.getScore()).c_str(), width - 70, 50, 20, WHITE);
+
     if (isRunning)
     {
       ball.tick(dT);
@@ -47,11 +51,13 @@ int main(void)
     if (CheckCollisionRecs(ball.getCollisionRec(), paddle2.getCollisionRec()))
     {
       ball.reverseX();
+      paddle2.increaseScore();
     }
 
     if (CheckCollisionRecs(ball.getCollisionRec(), paddle1.getCollisionRec()))
     {
       ball.reverseX();
+      paddle1.increaseScore();
     }
 
     if (ball.x < 0.f)
